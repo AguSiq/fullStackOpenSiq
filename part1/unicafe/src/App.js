@@ -6,9 +6,11 @@ const Button = ({ handleClick, text }) => {
 
 const StatisticLine = ({ value, text, percbool = false }) => {
   return (
-    <p>
-      {text} {value} {percbool ? '%' : ''}
-    </p>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+      {percbool ? <td>%</td> : <td></td>}
+    </tr>
   );
 };
 
@@ -18,14 +20,16 @@ const Statistics = ({ good, neutral, bad }) => {
   const positive = (good / all) * 100;
   if (good !== 0 || neutral !== 0 || bad !== 0)
     return (
-      <div>
-        <StatisticLine value={good} text="good" />
-        <StatisticLine value={neutral} text="neutral" />
-        <StatisticLine value={bad} text="bad" />
-        <StatisticLine value={all} text="all" />
-        <StatisticLine value={average} text="average" />
-        <StatisticLine value={positive} text="positive" percbool={true} />
-      </div>
+      <table>
+        <tbody>
+          <StatisticLine value={good} text="good" />
+          <StatisticLine value={neutral} text="neutral" />
+          <StatisticLine value={bad} text="bad" />
+          <StatisticLine value={all} text="all" />
+          <StatisticLine value={average} text="average" />
+          <StatisticLine value={positive} text="positive" percbool={true} />
+        </tbody>
+      </table>
     );
   else
     return (
